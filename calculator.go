@@ -10,13 +10,13 @@ import (
 
 func main() {
 
-	var partOne string
-	var operator string
-	var partTwo string
-	var partOneInt int
-	var partTwoInt int
-	var romeOper bool
-	var result int
+	var partOne string  // Первый операнд - тип:текст
+	var operator string // Математическая операция
+	var partTwo string  // Второй операнд - тип:текст
+	var partOneInt int  // Первый операнд - тип:инт
+	var partTwoInt int  // Второй операнд - тип:инт
+	var romeOper bool   // Признак на вход Римские?
+	var result int      // Итоговый результат
 
 	// карта допустимых значений на вход
 	mm := map[string]data{
