@@ -20,6 +20,9 @@ func main() {
 
 	// карта допустимых значений на вход
 	mm := map[string]data{
+		"one":          {"I", 1},
+		"two":          {"II", 2},
+		"three":        {"III", 3},
 		"four":         {"IV", 4},
 		"five":         {"V", 5},
 		"six":          {"VI", 6},
