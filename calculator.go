@@ -199,9 +199,9 @@ func OnlyArabRome(partOneInt, partTwoInt int) string { // Проверка на 
 	if partOneInt >= 1 && partOneInt <= 10 && partTwoInt >= 1 && partTwoInt <= 10 {
 		return "arab"
 	} else if partOneInt >= 1 && partTwoInt == 0 {
-		panic("Выдача паники, так как используются одновременно разные системы счисления.")
+		panic("Выдача паники, лишний оператор или разные системы счисления.")
 	} else if partOneInt == 0 && partTwoInt >= 1 {
-		panic("Выдача паники, так как используются одновременно разные системы счисления.")
+		panic("Выдача паники, лишний оператор или разные системы счисления.")
 	} else if partOneInt >= 11 || partTwoInt >= 11 {
 		panic("Выдача паники, два операнда должны быть только  1 - 10, либо  I - X.")
 	} else {
