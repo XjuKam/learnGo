@@ -145,7 +145,7 @@ func main() {
 		partOneInt, _ = strconv.Atoi(partOne) // Преобразование строки в число
 		partTwoInt, _ = strconv.Atoi(partTwo) // Преобразование строки в число
 
-		// Проверяем систему нумерации
+		// Проверяем систему нумерации и выдаем результат
 		if OnlyArabRome(partOneInt, partTwoInt) == "rome" {
 			key, found := GetKeyByValueRome(mm, partOne)
 			valueMm := mm[key]
@@ -163,27 +163,6 @@ func main() {
 				panic("Выдача паники, так как используются одновременно разные системы счисления.")
 			}
 			result = GetOperationResult(operator, partOneInt, partTwoInt)
-			/*
-				// Выполнение операции
-				switch operator {
-				case "+":
-					result = partOneInt + partTwoInt
-				case "-":
-					result = partOneInt - partTwoInt
-				case "*":
-					result = partOneInt * partTwoInt
-				case "/":
-					if partTwoInt != 0 {
-						result = partOneInt / partTwoInt
-					} else {
-						fmt.Println("Деление на ноль недопустимо.")
-						return
-					}
-				default:
-					fmt.Println("Неверная операция.")
-					return
-				}
-			*/
 
 			if result <= 0 && romeOper == true {
 				panic("В риме не было отрицательных и нуля, ну вот так и жили.")
@@ -196,33 +175,12 @@ func main() {
 		} else {
 			result = GetOperationResult(operator, partOneInt, partTwoInt)
 
-			/*
-				// Выполнение операции
-				switch operator {
-				case "+":
-					result = partOneInt + partTwoInt
-				case "-":
-					result = partOneInt - partTwoInt
-				case "*":
-					result = partOneInt * partTwoInt
-				case "/":
-					if partTwoInt != 0 {
-						result = partOneInt / partTwoInt
-					} else {
-						fmt.Println("Деление на ноль недопустимо.")
-						return
-					}
-				default:
-					fmt.Println("Неверная операция.")
-					return
-				}
-			*/
 			fmt.Printf("Output:\n%v\n", result)
 		}
 	}
 }
 
-func FindOperatorIndex(input string) int {
+func FindOperatorIndex(input string) int { // Проверка на доступный оператор
 	operators := "+-*/"
 
 	// Ищем индекс знака операции
@@ -234,7 +192,7 @@ func FindOperatorIndex(input string) int {
 	return -1
 }
 
-func OnlyArabRome(partOneInt, partTwoInt int) string {
+func OnlyArabRome(partOneInt, partTwoInt int) string { // Проверка на условие тоьлко араб. или рим. операнды
 	if partOneInt >= 1 && partOneInt <= 10 && partTwoInt >= 1 && partTwoInt <= 10 {
 		return "arab"
 	} else if partOneInt >= 1 && partTwoInt == 0 {
@@ -253,7 +211,7 @@ type data struct {
 	arabNum int
 }
 
-func GetKeyByValueRome(mm map[string]data, value string) (string, bool) {
+func GetKeyByValueRome(mm map[string]data, value string) (string, bool)  // Достаем из мапы по рим. числу
 	for key, v := range mm {
 		if v.romeNum == value {
 			return key, true
@@ -262,7 +220,7 @@ func GetKeyByValueRome(mm map[string]data, value string) (string, bool) {
 	return "", false
 }
 
-func GetKeyByValueArab(mm map[string]data, valueInt int) (string, bool) {
+func GetKeyByValueArab(mm map[string]data, valueInt int) (string, bool) { // Достаем из мапы по араб. числу
 	for key, b := range mm {
 		if b.arabNum == valueInt {
 			return key, true
@@ -271,8 +229,8 @@ func GetKeyByValueArab(mm map[string]data, valueInt int) (string, bool) {
 	return "", false
 }
 
-func GetOperationResult(operator string, partOneInt int, partTwoInt int) int {
-	// Выполнение операции
+func GetOperationResult(operator string, partOneInt int, partTwoInt int) int { 	// Выполнение операции
+
 	switch operator {
 	case "+":
 		result := partOneInt + partTwoInt
