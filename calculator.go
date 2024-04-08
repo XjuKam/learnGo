@@ -149,7 +149,7 @@ func main() {
 		if OnlyArabRome(partOneInt, partTwoInt) == "rome" {
 			key, found := GetKeyByValueRome(mm, partOne)
 			valueMm := mm[key]
-			if found == true {
+			if found {
 				partOneInt = valueMm.arabNum
 			} else {
 				panic("Выдача паники. Недопустимое значение, только 1-10, либо I - X")
@@ -162,8 +162,11 @@ func main() {
 			} else {
 				panic("Выдача паники, так как используются одновременно разные системы счисления.")
 			}
-			result = GetOperationResult(operator, partOneInt, partTwoInt)
-
+			if partOneInt >= 11 || partTwoInt >= 11 {
+				panic("Выдача паники. Недопустимое значение, только 1-10, либо I - X")
+			} else {
+				result = GetOperationResult(operator, partOneInt, partTwoInt)
+			}
 			if result <= 0 && romeOper == true {
 				panic("В риме не было отрицательных и нуля, ну вот так и жили.")
 			} else {
@@ -211,7 +214,7 @@ type data struct {
 	arabNum int
 }
 
-func GetKeyByValueRome(mm map[string]data, value string) (string, bool)  // Достаем из мапы по рим. числу
+func GetKeyByValueRome(mm map[string]data, value string) (string, bool) { // Достаем из мапы по рим. числу
 	for key, v := range mm {
 		if v.romeNum == value {
 			return key, true
@@ -229,7 +232,7 @@ func GetKeyByValueArab(mm map[string]data, valueInt int) (string, bool) { // Д�
 	return "", false
 }
 
-func GetOperationResult(operator string, partOneInt int, partTwoInt int) int { 	// Выполнение операции
+func GetOperationResult(operator string, partOneInt int, partTwoInt int) int { // Выполнение операции
 
 	switch operator {
 	case "+":
